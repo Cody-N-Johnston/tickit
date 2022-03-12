@@ -28,8 +28,20 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/hello', function () {
-    return Inertia::render('Hello');
-})->middleware(['auth', 'verified'])->name('hello');
+Route::get('/tickets', function () {
+    return Inertia::render('Tickets');
+})->middleware(['auth', 'verified'])->name('tickets');
+
+Route::get('/users', function () {
+    return Inertia::render('Users');
+})->middleware(['auth', 'verified'])->name('users');
+
+Route::get('/profile', function () {
+    return Inertia::render('Profile');
+})->middleware(['auth', 'verified'])->name('profile');
+
+Route::get('/Settings', function () {
+    return Inertia::render('Settings');
+})->middleware(['auth', 'verified'])->name('settings');
 
 require __DIR__.'/auth.php';
