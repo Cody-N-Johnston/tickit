@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import UserManagement from '@/Components/UserManagement.vue'
 </script>
 
 <template>
@@ -12,7 +13,7 @@ import { Head } from '@inertiajs/inertia-vue3';
       </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div class="py-4">
-          <div class="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+          <UserManagement />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
+import UserRow from '@/Components/Ticket/Row.vue'
 
 const people = [
   {
@@ -8,10 +9,20 @@ const people = [
     email: 'lindsay.walton@example.com',
     role: 'Member',
   },
-  // More people...
+  {
+    name: 'Lindsay Walton',
+    title: 'Front-end Developer',
+    email: 'lindsay.walton@example.com',
+    role: 'Member',
+  },
+  {
+    name: 'Lindsay Walton',
+    title: 'Front-end Developer',
+    email: 'lindsay.walton@example.com',
+    role: 'Member',
+  },
 ]
 const selectedPeople = ref([])
-const checked = ref(false)
 const indeterminate = computed(() => selectedPeople.value.length > 0 && selectedPeople.value.length < people.length)
 
 </script>
@@ -19,7 +30,6 @@ const indeterminate = computed(() => selectedPeople.value.length > 0 && selected
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Users</h1>
         <p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name, title, email and role.</p>
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -51,6 +61,11 @@ const indeterminate = computed(() => selectedPeople.value.length > 0 && selected
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
               <tr v-for="person in people" :key="person.email" :class="[selectedPeople.includes(person.email) && 'bg-gray-50']">
+                <div v-if="selectedPeople.includes(person.email)" class="absolute inset-y-0 left-0 w-0.5 bg-indigo-600"></div>
+                  <div class="relative w-12 px-6 sm:w-16 sm:px-8">
+                    <!--                <UserRow v-if="selectedPeople.includes(person.email)" :checked="!!selectedPeople.includes(person.email)" :name="person.name" :title="person.title" :email="person.email" :role="person.role" v-model="selectedPeople" />-->
+                  </div>
+
                 <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                   <div v-if="selectedPeople.includes(person.email)" class="absolute inset-y-0 left-0 w-0.5 bg-indigo-600"></div>
                   <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6" :value="person.email" v-model="selectedPeople" />
