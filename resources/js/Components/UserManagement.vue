@@ -1,6 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
-import UserRow from '@/Components/Ticket/Row.vue'
+import UserRow from '@/Components/User/Row.vue'
 
 const people = [
   {
@@ -25,8 +24,6 @@ const people = [
     role: 'Member',
   },
 ]
-const selectedPeople = ref([])
-const indeterminate = computed(() => selectedPeople.value.length > 0 && selectedPeople.value.length < people.length)
 
 </script>
 <template>
@@ -57,14 +54,12 @@ const indeterminate = computed(() => selectedPeople.value.length > 0 && selected
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
                 <UserRow v-for="person in people"
-                         :key="person.email"
+                         :key="person.id"
                          :id="person.id"
                          :name="person.name"
                          :title="person.title"
                          :email="person.email"
                          :role="person.role"
-                         :selected="selectedPeople.includes(person.email)"
-                         v-model="selectedPeople"
                 />
               </tbody>
             </table>
