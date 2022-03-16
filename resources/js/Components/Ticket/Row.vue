@@ -2,7 +2,7 @@
   import { ref } from 'vue'
 
   defineProps({
-    checked: Boolean,
+    selected: Boolean,
     name: String,
     title: String,
     email: String,
@@ -13,11 +13,9 @@
 
 </script>
 <template>
-    <td>
-      <div v-if="checked" class="absolute inset-y-0 left-0 w-0.5 bg-indigo-600"></div>
-      <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6" :value="email"/>
-    </td>
-    <td :class="['whitespace-nowrap py-4 pr-3 text-sm font-medium', checked ? 'text-indigo-600' : 'text-gray-900']">
+  <tr class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+
+    <td class="relative w-12 px-6 sm:w-16 sm:px-8 text-gray-900">
       {{ name }}
     </td>
     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -34,5 +32,6 @@
       >Edit<span class="sr-only">, {{ name }}</span></a
       >
     </td>
+  </tr>
 </template>
 
