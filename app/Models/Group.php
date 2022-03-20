@@ -16,4 +16,12 @@ class Group extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function groups()
+    {
+        return $this->hasMany(TicketThread::class);
+    }
 }
