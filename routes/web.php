@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\TicketsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/tickets', function () {
-    return Inertia::render('Tickets');
-})->middleware(['auth', 'verified'])->name('tickets');
+Route::get('/tickets', [TicketsController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('tickets');
 
 Route::get('/users', [UsersController::class, 'index'])
     ->middleware(['auth', 'verified'])
