@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 import UserManagement from '@/Components/UserManagement.vue'
 
 defineProps({
-  users: Array
+  users: Object
 })
 
 </script>
