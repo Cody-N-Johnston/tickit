@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,13 @@ Route::get('/tickets', function () {
     return Inertia::render('Tickets');
 })->middleware(['auth', 'verified'])->name('tickets');
 
-Route::get('/users', function () {
-    return Inertia::render('Users');
-})->middleware(['auth', 'verified'])->name('users');
+Route::get('/users', [UsersController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('users');
+
+Route::get('/users/edit/{user_id}', [UsersController::class, 'edit'])
+    ->middleware(['auth', 'verified'])
+    ->name('users.edit');
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');
