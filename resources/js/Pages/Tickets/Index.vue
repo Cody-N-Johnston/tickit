@@ -1,4 +1,7 @@
 <script setup>
+import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
+import { Head } from '@inertiajs/inertia-vue3'
+import TicketTable from '@/Components/Ticket/Table.vue'
 const people = [
   {
     name: 'Lindsay Walton',
@@ -12,9 +15,9 @@ const people = [
   // More people...
 ]
 
-import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
-import { Head } from '@inertiajs/inertia-vue3'
-import TicketTable from '@/Components/Ticket/Table.vue'
+defineProps({
+  tickets: Object
+})
 </script>
 
 <template>
@@ -26,7 +29,7 @@ import TicketTable from '@/Components/Ticket/Table.vue'
       </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div class="py-4">
-          <TicketTable :people="people" />
+          <TicketTable :tickets="tickets" />
         </div>
       </div>
     </div>

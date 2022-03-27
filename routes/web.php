@@ -34,6 +34,9 @@ Route::get('/tickets', [TicketsController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('tickets');
 
+Route::post('create-ticket', [TicketsController::class, 'store'])
+    ->name('tickets.store');
+
 Route::get('/users', [UsersController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('users');

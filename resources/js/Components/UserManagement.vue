@@ -1,7 +1,6 @@
 <script setup>
 import UserRow from '@/Components/User/Row.vue'
-import Pagination from '@/Components/SimplePagination.vue'
-import SimplePagination from "@/Components/SimplePagination";
+import SimplePagination from "@/Components/SimplePagination.vue";
 
 defineProps({
   users: Object
@@ -33,23 +32,23 @@ defineProps({
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
                 <UserRow v-for="user in users.data"
-                         :key="user.id"
-                         :id="user.id"
-                         :name="user.name"
-                         :title="user.title"
-                         :email="user.email"
-                         :group="user.group"
+                  :key="user.id"
+                  :id="user.id"
+                  :name="user.name"
+                  :title="user.title"
+                  :email="user.email"
+                  :group="user.group"
                 />
               </tbody>
             </table>
           </div>
         </div>
        <SimplePagination
-           :prevPageUrl="users.prev_page_url"
-           :nextPageUrl="users.next_page_url"
-           :total="users.total"
-           :from="users.from"
-           :to="users.to"
+         :prevPageUrl="users.prev_page_url"
+         :nextPageUrl="users.next_page_url"
+         :total="users.total"
+         :from="users.from"
+         :to="users.to"
        />
       </div>
     </div>

@@ -9,6 +9,25 @@ class TicketThread extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+    protected $fillable = [
+        'subject',
+        'status',
+        'created_by_user_id',
+        'assigned_to_user_id',
+        'group_id',
+        'created_at',
+        'updated_at',
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -22,7 +41,7 @@ class TicketThread extends Model
      */
     public function createdBy()
     {
-        return $this->belongsTo(User::class, 'id', 'created_by_user_id');
+        return $this->belongsTo(User::class, 'created_by_user_id', 'id');
     }
 
     /**
@@ -30,14 +49,6 @@ class TicketThread extends Model
      */
     public function assignedTo()
     {
-        return $this->belongsTo(User::class, 'id', 'assigned_to_user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function groupAssigned()
-    {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(User::class, 'assigned_to_user_id', 'id');
     }
 }

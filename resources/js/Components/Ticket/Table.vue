@@ -1,18 +1,31 @@
 <script setup>
 defineProps({
-  people: Array
+  tickets: Object
 })
+
+import TicketRow from '@/Components/Ticket/Row.vue'
+import CreateTicketModal from '@/Components/Ticket/CreateTicketModal.vue'
+import ValidationErrors from '@/Components/ValidationErrors.vue'
+import SimplePagination from '@/Components/SimplePagination.vue'
+import { ref } from 'vue'
+
+const openTicketModal = ref(false)
+const createTicketClass = "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
 </script>
 
 <template>
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
+        <ValidationErrors />
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add user</button>
+        <button id="open-ticket-modal" @click="openTicketModal = true" type="button" :class="createTicketClass">Create Ticket</button>
       </div>
     </div>
+    <Teleport to="body">
+      <CreateTicketModal :open="openTicketModal" :user_id="$page.props.auth.user.id" @close="openTicketModal = false" />
+    </Teleport>
     <div class="mt-8 flex flex-col">
       <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -21,54 +34,40 @@ defineProps({
               <thead class="bg-gray-50">
               <tr>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Created By</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Created At</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Created</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Subject</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Group</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Assigned To</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Updated At</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last Update</th>
                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                   <span class="sr-only">Edit</span>
                 </th>
               </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-              <tr v-for="person in people" :key="person.email">
-                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                  <div class="flex items-center">
-                    <div class="h-10 w-10 flex-shrink-0">
-                      <img class="h-10 w-10 rounded-full" :src="person.image" alt="" />
-                    </div>
-                    <div class="ml-4">
-                      <div class="font-medium text-gray-900">{{ person.name }}</div>
-                      <div class="text-gray-500">{{ person.email }}</div>
-                    </div>
-                  </div>
-                </td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <div class="text-gray-900">{{ new Date().toDateString() }}</div>
-                </td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <div class="text-gray-900">{{ person.title }}</div>
-                </td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Active</span>
-                </td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Group Name</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Assignee</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <div class="text-gray-900">{{ new Date().toDateString() }}</div>
-                </td>
-                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                  >Chat<span class="sr-only">, {{ person.name }}</span></a
-                  >
-                </td>
-              </tr>
+              <TicketRow v-for="ticket in tickets.data"
+                         :key="ticket.id"
+                         :subject="ticket.subject"
+                         :createdByEmail="ticket.created_by_email"
+                         :status="ticket.status"
+                         :createdBy="ticket.created_by"
+                         :assignedTo="ticket.assigned_to"
+                         :groupName="ticket.group"
+                         :createdAt="ticket.created_at"
+                         :updatedAt="ticket.updated_at"
+              />
               </tbody>
             </table>
           </div>
         </div>
+        <SimplePagination
+            :prevPageUrl="tickets.prev_page_url"
+            :nextPageUrl="tickets.next_page_url"
+            :total="tickets.total"
+            :from="tickets.from"
+            :to="tickets.to"
+        />
       </div>
     </div>
   </div>

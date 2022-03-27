@@ -9,6 +9,15 @@ class TicketMessage extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+    protected $fillable = [
+        'message',
+        'ticket_thread_id',
+        'user_id',
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
