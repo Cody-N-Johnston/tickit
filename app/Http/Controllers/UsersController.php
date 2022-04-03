@@ -23,7 +23,7 @@ class UsersController extends Controller
                     'id' => $user->id,
                     'name' => $user->name,
                     'email' => $user->email,
-                    'group' => $user->group->name
+                    'group' => $user->group === null ? '' : $user->group->name
                 ];
             })
         ]);
