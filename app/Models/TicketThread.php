@@ -12,7 +12,7 @@ class TicketThread extends Model
     public $timestamps = true;
     protected $fillable = [
         'subject',
-        'status',
+        'ticket_status_id',
         'created_by_user_id',
         'assigned_to_user_id',
         'group_id',
@@ -50,5 +50,13 @@ class TicketThread extends Model
     public function assignedTo()
     {
         return $this->belongsTo(User::class, 'assigned_to_user_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function ticketStatus()
+    {
+        return $this->belongsTo(TicketStatus::class);
     }
 }

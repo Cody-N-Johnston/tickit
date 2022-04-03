@@ -2,21 +2,12 @@
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 import TicketTable from '@/Components/Ticket/Table.vue'
-const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  // More people...
-]
 
 defineProps({
-  tickets: Object
+  tickets: Object,
+  groups: Array,
+  ticket_statuses: Array,
+  administrators: Array
 })
 </script>
 
@@ -29,7 +20,12 @@ defineProps({
       </div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div class="py-4">
-          <TicketTable :tickets="tickets" />
+          <TicketTable
+              :tickets="tickets"
+              :groups="groups"
+              :ticket-statuses="ticket_statuses"
+              :administrators="administrators"
+          />
         </div>
       </div>
     </div>

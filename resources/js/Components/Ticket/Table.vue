@@ -1,12 +1,15 @@
 <script setup>
 defineProps({
-  tickets: Object
+  tickets: Object,
+  groups: Array,
+  ticketStatuses: Array,
+  administrators: Array
 })
 
 import TicketRow from '@/Components/Ticket/Row.vue'
 import CreateTicketModal from '@/Components/Ticket/CreateTicketModal.vue'
-import ValidationErrors from '@/Components/ValidationErrors.vue'
 import SimplePagination from '@/Components/SimplePagination.vue'
+import FlashMessage from '@/Components/FlashMessage.vue'
 import { ref } from 'vue'
 
 const openTicketModal = ref(false)
@@ -17,7 +20,7 @@ const createTicketClass = "inline-flex items-center justify-center rounded-md bo
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <ValidationErrors />
+        <FlashMessage />
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
         <button id="open-ticket-modal" @click="openTicketModal = true" type="button" :class="createTicketClass">Create Ticket</button>
@@ -46,24 +49,20 @@ const createTicketClass = "inline-flex items-center justify-center rounded-md bo
               </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-              <TicketRow v-for="ticket in tickets.data"
-                         :key="ticket.id"
-                         :subject="ticket.subject"
-                         :createdByEmail="ticket.created_by_email"
-                         :status="ticket.status"
-                         :createdBy="ticket.created_by"
-                         :assignedTo="ticket.assigned_to"
-                         :groupName="ticket.group"
-                         :createdAt="ticket.created_at"
-                         :updatedAt="ticket.updated_at"
+              <TicketRow v-for="ticketThread in tickets.data"
+                         :key="ticketThread.id"
+                         :groups="groups"
+                         :ticket-statuses="ticketStatuses"
+                         :ticket-thread="ticketThread"
+                         :administrators="administrators"
               />
               </tbody>
             </table>
           </div>
         </div>
         <SimplePagination
-            :prevPageUrl="tickets.prev_page_url"
-            :nextPageUrl="tickets.next_page_url"
+            :prev-page-url="tickets.prev_page_url"
+            :next-page-url="tickets.next_page_url"
             :total="tickets.total"
             :from="tickets.from"
             :to="tickets.to"

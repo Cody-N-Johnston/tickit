@@ -34,8 +34,11 @@ Route::get('/tickets', [TicketsController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('tickets');
 
-Route::post('create-ticket', [TicketsController::class, 'store'])
+Route::post('/tickets', [TicketsController::class, 'store'])
     ->name('tickets.store');
+
+Route::put('/tickets/{ticket}', [TicketsController::class, 'update'])
+    ->name('tickets.update');
 
 Route::get('/users', [UsersController::class, 'index'])
     ->middleware(['auth', 'verified'])
