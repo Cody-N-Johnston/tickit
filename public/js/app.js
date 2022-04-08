@@ -22212,6 +22212,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_SimplePagination_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/SimplePagination.vue */ "./resources/js/Components/SimplePagination.vue");
 /* harmony import */ var _Components_FlashMessage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/FlashMessage.vue */ "./resources/js/Components/FlashMessage.vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/PlusSmIcon.js");
+
 
 
 
@@ -22228,7 +22230,7 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var openTicketModal = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(false);
-    var createTicketClass = "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto";
+    var createTicketClass = "inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500";
     var __returned__ = {
       openTicketModal: openTicketModal,
       createTicketClass: createTicketClass,
@@ -22236,7 +22238,8 @@ __webpack_require__.r(__webpack_exports__);
       CreateTicketModal: _Components_Ticket_CreateTicketModal_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       SimplePagination: _Components_SimplePagination_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
       FlashMessage: _Components_FlashMessage_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      ref: vue__WEBPACK_IMPORTED_MODULE_4__.ref
+      ref: vue__WEBPACK_IMPORTED_MODULE_4__.ref,
+      PlusSmIconOutline: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -22405,10 +22408,6 @@ __webpack_require__.r(__webpack_exports__);
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       Dialog: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.Dialog,
       DialogOverlay: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.DialogOverlay,
-      Menu: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.Menu,
-      MenuButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.MenuButton,
-      MenuItem: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.MenuItem,
-      MenuItems: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.MenuItems,
       TransitionChild: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.TransitionChild,
       TransitionRoot: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.TransitionRoot,
       MenuAlt2Icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -24655,7 +24654,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     type: "button",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($setup.createTicketClass)
-  }, "Create Ticket")])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Teleport, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PlusSmIconOutline"], {
+    "class": "h-6 w-6",
+    "aria-hidden": "true"
+  })])])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Teleport, {
     to: "body"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CreateTicketModal"], {
     open: $setup.openTicketModal,
@@ -52620,6 +52622,39 @@ function render(_ctx, _cache) {
       "stroke-linecap": "round",
       "stroke-linejoin": "round",
       d: "M4 6h16M4 12h16M4 18h7"
+    })
+  ]))
+}
+
+/***/ }),
+
+/***/ "./node_modules/@heroicons/vue/outline/esm/PlusSmIcon.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@heroicons/vue/outline/esm/PlusSmIcon.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function render(_ctx, _cache) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    "stroke-width": "2",
+    stroke: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      d: "M12 6v6m0 0v6m0-6h6m-6 0H6"
     })
   ]))
 }

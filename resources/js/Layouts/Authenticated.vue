@@ -3,10 +3,6 @@ import { ref } from 'vue'
 import {
   Dialog,
   DialogOverlay,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue'
