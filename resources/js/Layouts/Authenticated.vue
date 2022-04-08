@@ -3,10 +3,6 @@ import { ref } from 'vue'
 import {
   Dialog,
   DialogOverlay,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue'
@@ -16,7 +12,6 @@ import {
 } from '@heroicons/vue/outline'
 import DesktopSideBar from "@/Components/DesktopSideBar"
 import HeaderMenu from "@/Components/HeaderMenu"
-import AdminDashboardChart from "@/Components/AdminDashboardChart"
 
 const sidebarOpen = ref(false)
 const showingNavigationDropdown = ref(false)

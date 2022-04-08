@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TicketMessageAttachment extends Model
+class TicketStatus extends Model
 {
     use HasFactory;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function ticketThread()
     {
-        return $this->hasOne(TicketThread::class);
+        return $this->hasMany(TicketThread::class);
     }
 }
