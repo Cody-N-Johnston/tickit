@@ -10,6 +10,7 @@ import {
 } from '@heroicons/vue/outline'
 
 import HeaderMenu from "@/Components/HeaderMenu"
+import { Link } from '@inertiajs/inertia-vue3'
 
 const navigation = [
   { name: 'Dashboard', href: "/dashboard", icon: HomeIcon},
@@ -46,10 +47,10 @@ const showingNavigationDropdown = ref(false)
             <div class="mt-5 flex-1 h-0 overflow-y-auto">
               <nav class="px-2">
                 <div class="space-y-1">
-                  <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                  <Link v-for="item in navigation" :key="item.name" :href="item.href" class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md">
                     <component :is="item.icon" class="text-gray-400 group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6" aria-hidden="true" />
                     {{ item.name }}
-                  </a>
+                  </Link>
                 </div>
               </nav>
             </div>
@@ -70,10 +71,10 @@ const showingNavigationDropdown = ref(false)
         <div class="flex-1 flex flex-col overflow-y-auto bg-gray-800">
           <nav class="flex-1 px-2 py-4">
             <div class="space-y-1">
-              <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']" :aria-current="item.current ? 'page' : undefined">
-                <component :is="item.icon" :class="[item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
+              <Link v-for="item in navigation" :key="item.name" :href="item.href" class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                <component :is="item.icon" class="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-6 w-6" aria-hidden="true" />
                 {{ item.name }}
-              </a>
+              </Link>
             </div>
           </nav>
         </div>
