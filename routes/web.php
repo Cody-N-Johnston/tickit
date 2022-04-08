@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\TicketsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,19 +24,29 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->middleware(['guest']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/tickets', function () {
-    return Inertia::render('Tickets');
-})->middleware(['auth', 'verified'])->name('tickets');
+Route::get('/tickets', [TicketsController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('tickets');
 
-Route::get('/users', function () {
-    return Inertia::render('Users');
-})->middleware(['auth', 'verified'])->name('users');
+Route::post('/tickets', [TicketsController::class, 'store'])
+    ->name('tickets.store');
+
+Route::put('/tickets/{ticket}', [TicketsController::class, 'update'])
+    ->name('tickets.update');
+
+Route::get('/users', [UsersController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('users');
+
+Route::get('/users/edit/{user_id}', [UsersController::class, 'edit'])
+    ->middleware(['auth', 'verified'])
+    ->name('users.edit');
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');
