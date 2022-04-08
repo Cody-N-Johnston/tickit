@@ -33,22 +33,6 @@ const dated = ref(dueDates[0])
 
 </script>
 
-<!--
-  This example requires Tailwind CSS v2.0+
-
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <template>
   <form action="#" class="relative">
     <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">

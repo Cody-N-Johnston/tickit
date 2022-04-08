@@ -50109,6 +50109,27 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Chat/Index.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Chat/Index.vue ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _var_www_html_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+const script = {}
+
+;
+const __exports__ = /*#__PURE__*/(0,_var_www_html_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__["default"])(script, [['__file',"resources/js/Pages/Chat/Index.vue"]])
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Dashboard.vue":
 /*!******************************************!*\
   !*** ./resources/js/Pages/Dashboard.vue ***!
@@ -52401,6 +52422,7 @@ var map = {
 	"./Auth/Register.vue": "./resources/js/Pages/Auth/Register.vue",
 	"./Auth/ResetPassword.vue": "./resources/js/Pages/Auth/ResetPassword.vue",
 	"./Auth/VerifyEmail.vue": "./resources/js/Pages/Auth/VerifyEmail.vue",
+	"./Chat/Index.vue": "./resources/js/Pages/Chat/Index.vue",
 	"./Dashboard.vue": "./resources/js/Pages/Dashboard.vue",
 	"./Settings.vue": "./resources/js/Pages/Settings.vue",
 	"./Tickets.vue": "./resources/js/Pages/Tickets.vue",

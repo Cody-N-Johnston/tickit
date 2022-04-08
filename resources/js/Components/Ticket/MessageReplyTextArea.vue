@@ -23,22 +23,6 @@ const moods = [
 const selected = ref(moods[5])
 </script>
 
-<!--
-  This example requires Tailwind CSS v2.0+
-
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <template>
   <div class="flex items-start space-x-4">
     <div class="flex-shrink-0">
