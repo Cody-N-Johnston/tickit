@@ -29,7 +29,6 @@ defineProps({
     </td>
     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
           <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800"> {{ ticketThread.ticket_status }} </span>
-<!--      <TicketSelectMenu />-->
     </td>
     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
       <AssignedGroupSelect :groups="groups" :group-id="ticketThread.group_id" :group-name="ticketThread.group" :ticket="ticketThread"/>
@@ -41,7 +40,7 @@ defineProps({
       <div class="text-gray-900">{{ new Date(ticketThread.updated_at).toDateString() + " " + new Date(ticketThread.updated_at).toLocaleTimeString() }}</div>
     </td>
     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-      <Link href="#" class="text-indigo-600 hover:text-indigo-900"
+      <Link href="/chat" class="text-indigo-600 hover:text-indigo-900"
       >Chat<span class="sr-only">, {{ ticketThread.group_name }}</span></Link
       >
     </td>

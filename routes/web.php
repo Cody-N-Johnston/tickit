@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,10 @@ Route::get('/users', [UsersController::class, 'index'])
 Route::get('/users/edit/{user_id}', [UsersController::class, 'edit'])
     ->middleware(['auth', 'verified'])
     ->name('users.edit');
+
+Route::get('/chat', [ChatController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('chat');
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');
