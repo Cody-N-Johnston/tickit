@@ -5,10 +5,16 @@ const props = defineProps({
   id: Number,
   sender: String,
   message: String,
-  time: String
+  createdAt: String
 })
 
 const isHovered = ref(false)
+
+function formatCreatedAt() {
+  let date = new Date(props.createdAt)
+
+  return date.toLocaleDateString() + " " + date.toLocaleTimeString()
+}
 </script>
 
 <template>
@@ -17,7 +23,7 @@ const isHovered = ref(false)
       <div class="flex-1 ml-3">
         <div>
           <span class="font-bold">{{ sender }}</span>
-          <span class="text-gray-700 text-xs ml-1">{{ time }}</span>
+          <span class="text-gray-700 text-xs ml-1">{{ formatCreatedAt(createdAt) }}</span>
         </div>
         <span>{{ message }}</span>
       </div>

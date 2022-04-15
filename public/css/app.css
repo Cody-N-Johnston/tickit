@@ -604,9 +604,6 @@ select {
 .pointer-events-none {
   pointer-events: none;
 }
-.static {
-  position: static;
-}
 .fixed {
   position: fixed;
 }
@@ -650,32 +647,8 @@ select {
 .bottom-0 {
   bottom: 0px;
 }
-.bottom-10 {
-  bottom: 2.5rem;
-}
 .bottom-4 {
   bottom: 1rem;
-}
-.bottom-2 {
-  bottom: 0.5rem;
-}
-.-right-0 {
-  right: -0px;
-}
-.right-20 {
-  right: 5rem;
-}
-.right-10 {
-  right: 2.5rem;
-}
-.top-10 {
-  top: 2.5rem;
-}
-.top-12 {
-  top: 3rem;
-}
-.right-2 {
-  right: 0.5rem;
 }
 .z-0 {
   z-index: 0;
@@ -921,9 +894,6 @@ select {
 .w-5\/6 {
   width: 83.333333%;
 }
-.w-screen {
-  width: 100vw;
-}
 .min-w-full {
   min-width: 100%;
 }
@@ -945,14 +915,8 @@ select {
 .flex-1 {
   flex: 1 1 0%;
 }
-.flex-none {
-  flex: none;
-}
 .flex-shrink-0 {
   flex-shrink: 0;
-}
-.flex-grow {
-  flex-grow: 1;
 }
 .table-fixed {
   table-layout: fixed;
@@ -1121,17 +1085,11 @@ select {
 .overflow-hidden {
   overflow: hidden;
 }
-.overflow-scroll {
-  overflow: scroll;
-}
 .overflow-x-auto {
   overflow-x: auto;
 }
 .overflow-y-auto {
   overflow-y: auto;
-}
-.overflow-y-scroll {
-  overflow-y: scroll;
 }
 .truncate {
   overflow: hidden;
@@ -1180,11 +1138,11 @@ select {
 .border-4 {
   border-width: 4px;
 }
-.border-2 {
-  border-width: 2px;
-}
 .border-0 {
   border-width: 0px;
+}
+.border-2 {
+  border-width: 2px;
 }
 .border-t {
   border-top-width: 1px;
@@ -1318,10 +1276,6 @@ select {
 .fill-current {
   fill: currentColor;
 }
-.object-cover {
-  -o-object-fit: cover;
-     object-fit: cover;
-}
 .p-6 {
   padding: 1.5rem;
 }
@@ -1435,6 +1389,9 @@ select {
 .pl-12 {
   padding-left: 3rem;
 }
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
 .pl-1 {
   padding-left: 0.25rem;
 }
@@ -1458,9 +1415,6 @@ select {
 }
 .pl-4 {
   padding-left: 1rem;
-}
-.pb-10 {
-  padding-bottom: 2.5rem;
 }
 .text-left {
   text-align: left;
@@ -2158,10 +2112,6 @@ select {
 
   .md\:ml-0 {
     margin-left: 0px;
-  }
-
-  .md\:w-auto {
-    width: auto;
   }
 
   .md\:rounded-lg {

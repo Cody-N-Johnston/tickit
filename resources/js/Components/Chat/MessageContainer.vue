@@ -10,8 +10,8 @@ const props = defineProps({
   <div class="pt-4 mb-1 flex-1 pb-10">
     <Message v-for="message in messages"
              :id="message.id"
-             :sender="message.sender"
-             :time="message.time"
+             :sender="message.user_name"
+             :created-at="message.created_at"
              :message="message.message"
     />
   </div>

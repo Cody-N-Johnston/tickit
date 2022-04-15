@@ -11,29 +11,26 @@ use App\Models\TicketStatus;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
-class ChatController extends Controller
+class TicketMessageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Inertia\Response
      */
-    public function index(Request $request, TicketThread $ticketThread)
+    public function index(Request $request, TicketMessage $ticketMessage)
     {
         return Inertia::render('Chat/Index', [
-            'messages' => $ticketThread->messages()
-                ->with('user')
-                ->get()
-                ->map(function ($message) {
+            'tickets' => TicketMessage::with(['ticketThread'])
+                ->withQueryString()
+                ->through(function ($ticketMessage) {
                     return [
-                        'id' => $message->id,
-                        'message' => $message->message,
-                        'user_id' => $message->user->id,
-                        'user_name' => $message->user->name,
-                        'created_at' => $message->created_at
+                        'id' => $ticketMessage->id,
+                        'message' => $ticketMessage->message,
+                        'created_at' => $ticketMessage->created_at,
+                        'updated_at' => $ticketMessage->updated_at,
                     ];
                 })
-                ->all()
         ]);
     }
 

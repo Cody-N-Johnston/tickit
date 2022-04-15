@@ -19,11 +19,11 @@ class TicketMessage extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function ticketThread()
     {
-        return $this->hasOne(TicketThread::class);
+        return $this->belongsTo(TicketThread::class);
     }
 
     /**
@@ -32,5 +32,13 @@ class TicketMessage extends Model
     public function attachments()
     {
         return $this->hasMany(TicketMessageAttachment::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

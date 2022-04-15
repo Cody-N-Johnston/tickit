@@ -49,7 +49,7 @@ Route::get('/users/edit/{user_id}', [UsersController::class, 'edit'])
     ->middleware(['auth', 'verified'])
     ->name('users.edit');
 
-Route::get('/chat', [ChatController::class, 'index'])
+Route::get('/chat/{ticketThread}', [ChatController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('chat');
 

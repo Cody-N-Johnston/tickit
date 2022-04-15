@@ -40,9 +40,7 @@ defineProps({
       <div class="text-gray-900">{{ new Date(ticketThread.updated_at).toDateString() + " " + new Date(ticketThread.updated_at).toLocaleTimeString() }}</div>
     </td>
     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-      <Link href="/chat" class="text-indigo-600 hover:text-indigo-900"
-      >Chat<span class="sr-only">, {{ ticketThread.group_name }}</span></Link
-      >
+      <Link :href="route('chat', ticketThread)" class="text-indigo-600 hover:text-indigo-900">Chat</Link>
     </td>
   </tr>
 </template>

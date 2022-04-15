@@ -21368,16 +21368,23 @@ __webpack_require__.r(__webpack_exports__);
     id: Number,
     sender: String,
     message: String,
-    time: String
+    createdAt: String
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var props = __props;
     var isHovered = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+
+    function formatCreatedAt() {
+      var date = new Date(props.createdAt);
+      return date.toLocaleDateString() + " " + date.toLocaleTimeString();
+    }
+
     var __returned__ = {
       props: props,
       isHovered: isHovered,
+      formatCreatedAt: formatCreatedAt,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -22947,206 +22954,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    messages: Array
+  },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+    var props = __props;
     var subject = "This is the ticket subject for some shit.";
     var ticketId = 1;
-    var messages = [{
-      id: 1,
-      sender: "Cody Johnston",
-      message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-      time: "23:21"
-    }, {
-      id: 1,
-      sender: "Cody Johnston",
-      message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-      time: "23:21"
-    } // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    // {
-    //   id: 1,
-    //   sender: "Cody Johnston",
-    //   message: "Hey there I've got a problem with this printer. It's not printing things and says there are errors. Please help",
-    //   time: "23:21"
-    // },
-    ];
     var __returned__ = {
+      props: props,
       subject: subject,
       ticketId: ticketId,
-      messages: messages,
       AuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       MessageHeader: _Components_Chat_MessageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       MessageContainer: _Components_Chat_MessageContainer_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -23521,7 +23341,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.sender), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.time), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatCreatedAt($props.createdAt)), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message), 1
   /* TEXT */
@@ -23552,12 +23372,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.messages, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Message"], {
       id: message.id,
-      sender: message.sender,
-      time: message.time,
+      sender: message.user_name,
+      "created-at": message.created_at,
       message: message.message
     }, null, 8
     /* PROPS */
-    , ["id", "sender", "time", "message"]);
+    , ["id", "sender", "created-at", "message"]);
   }), 256
   /* UNKEYED_FRAGMENT */
   ))]);
@@ -24977,9 +24797,6 @@ var _hoisted_16 = {
 
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Chat");
 
-var _hoisted_18 = {
-  "class": "sr-only"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.ticketThread.created_by), 1
   /* TEXT */
@@ -25008,18 +24825,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["users", "user-id", "user-name", "ticket"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(new Date($props.ticketThread.updated_at).toDateString() + " " + new Date($props.ticketThread.updated_at).toLocaleTimeString()), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
-    href: "/chat",
+    href: _ctx.route('chat', $props.ticketThread),
     "class": "text-indigo-600 hover:text-indigo-900"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_18, ", " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.ticketThread.group_name), 1
-      /* TEXT */
-      )];
+      return [_hoisted_17];
     }),
     _: 1
     /* STABLE */
 
-  })])]);
+  }, 8
+  /* PROPS */
+  , ["href"])])]);
 }
 
 /***/ }),
@@ -26151,8 +25968,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         subject: $setup.subject,
         "ticket-id": $setup.ticketId
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    MessageContainer    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["MessageContainer"], {
-        messages: $setup.messages
-      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    MessageTextArea    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ChatBox"])])];
+        messages: $props.messages
+      }, null, 8
+      /* PROPS */
+      , ["messages"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    MessageTextArea    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["ChatBox"])])];
     }),
     _: 1
     /* STABLE */
