@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\TicketThread;
 use App\Models\TicketMessage;
 use App\Models\TicketMessageAttachment;
@@ -18,19 +20,29 @@ class ChatController extends Controller
      *
      * @return \Inertia\Response
      */
-    public function index(Request $request, TicketThread $ticketThread)
+    public function index(TicketThread $ticketThread)
     {
         return Inertia::render('Chat/Index', [
+            'thread' => [
+                'id' => $ticketThread->id,
+                'subject' => $ticketThread->subject,
+                'created_at' => $ticketThread->created_at,
+                'updated_at' => $ticketThread->updated_at,
+                'created_by_user_id' => $ticketThread->createdBy->id,
+                'created_by' => $ticketThread->createdBy->name,
+                'assigned_to_user_id' => $ticketThread->assignedTo->id,
+                'assigned_to' => $ticketThread->assignedTo->name,
+            ],
             'messages' => $ticketThread->messages()
                 ->with('user')
                 ->get()
-                ->map(function ($message) {
+                ->map(function ($message) use ($ticketThread) {
                     return [
                         'id' => $message->id,
                         'message' => $message->message,
                         'user_id' => $message->user->id,
                         'user_name' => $message->user->name,
-                        'created_at' => $message->created_at
+                        'created_at' => $message->created_at,
                     ];
                 })
                 ->all()
@@ -55,7 +67,17 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'message' => ['required']
+        ]);
+
+        $ticketMessage = new TicketMessage();
+        $ticketMessage->message = $request->input('message');
+        $ticketMessage->user_id = Auth::user()->id;
+        $ticketMessage->ticket_thread_id = $request->input('thread_id');
+
+        $ticketMessage->save();
+        return Redirect::back();
     }
 
     /**

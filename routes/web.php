@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,18 +28,20 @@ Route::get('/', function () {
     ]);
 })->middleware(['guest']);
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::get('/tickets', [TicketsController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('tickets');
 
 Route::post('/tickets', [TicketsController::class, 'store'])
+    ->middleware(['auth'])
     ->name('tickets.store');
 
 Route::put('/tickets/{ticket}', [TicketsController::class, 'update'])
+    ->middleware(['auth'])
     ->name('tickets.update');
 
 Route::get('/users', [UsersController::class, 'index'])
@@ -52,6 +55,10 @@ Route::get('/users/edit/{user_id}', [UsersController::class, 'edit'])
 Route::get('/chat/{ticketThread}', [ChatController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('chat');
+
+Route::post('/chat', [ChatController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('chat.store');
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');

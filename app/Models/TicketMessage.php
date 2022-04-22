@@ -14,8 +14,6 @@ class TicketMessage extends Model
         'message',
         'ticket_thread_id',
         'user_id',
-        'created_at',
-        'updated_at',
     ];
 
     /**

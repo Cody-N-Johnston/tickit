@@ -6,10 +6,9 @@ import ChatBox from '@/Components/Chat/ChatBox.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 
 const props = defineProps({
-  messages: Array
+  messages: Array,
+  thread: Object
 })
-const subject = "This is the ticket subject for some shit."
-const ticketId = 1
 
 </script>
 
@@ -18,7 +17,7 @@ const ticketId = 1
   <AuthenticatedLayout>
       <div class="flex flex-1 flex-col py-6" >
         <div class="sticky">
-          <MessageHeader :subject="subject" :ticket-id="ticketId"/>
+          <MessageHeader :thread="thread" />
         </div>
         <!--    MessageContainer    -->
         <div class="flex-1 flex-col-reverse pb-6 h-full">
@@ -27,7 +26,7 @@ const ticketId = 1
       </div>
     <!--    MessageTextArea    -->
     <div class="flex-1 flex-row fixed bottom-4 w-5/6 pt-8">
-      <ChatBox />
+      <ChatBox :thread="thread"/>
     </div>
   </AuthenticatedLayout>
 </template>
