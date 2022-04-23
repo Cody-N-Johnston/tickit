@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TicketMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,9 @@ Route::get('/', function () {
     ]);
 })->middleware(['guest']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/tickets', [TicketsController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -59,6 +60,10 @@ Route::get('/chat/{ticketThread}', [ChatController::class, 'index'])
 Route::post('/chat', [ChatController::class, 'store'])
     ->middleware(['auth'])
     ->name('chat.store');
+
+Route::get('/messages/{attachment}', [TicketMessageController::class, 'download'])
+    ->middleware(['auth'])
+    ->name('messages.download');
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');

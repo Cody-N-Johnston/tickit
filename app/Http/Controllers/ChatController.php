@@ -44,9 +44,9 @@ class ChatController extends Controller
                         'user_id' => $message->user->id,
                         'user_name' => $message->user->name,
                         'created_at' => $message->created_at,
-                        'attachment_name' => $attachment !== null ? $attachment->name : '',
-                        'attachment_location' => $attachment !== null ? $attachment->location : '',
-                        'attachment_id' => $attachment !== null ? $attachment->id : '',
+                        'attachment_name' => $attachment !== null ? $attachment->name : null,
+                        'attachment_location' => $attachment !== null ? $attachment->location : null,
+                        'attachment_id' => $attachment !== null ? $attachment->id : null,
                     ];
                 })
                 ->all()
@@ -73,10 +73,11 @@ class ChatController extends Controller
     {
         $request->validate([
             'message' => ['required'],
-            'attachment' => 'mimes:jpg,png,gif,mp4,avi,mpeg,zip,txt'
+            'attachment' => 'mimes:jpg,png,gif,mp4,avi,mpeg,zip,txt,docx,xlsx'
         ]);
 
         $filePath = $request->file('attachment')->store('message_attachments');
+        $fileType = $request->file('attachment')->getClientMimeType();
         $fileName = $request->file('attachment')->getClientOriginalName();
 
         $ticketMessage = new TicketMessage();
@@ -88,7 +89,8 @@ class ChatController extends Controller
         $ticketMessage->attachments()->create([
                 'location' => $filePath,
                 'name' => $fileName,
-                'ticket_thread_id' => $ticketMessage->ticket_thread_id
+                'ticket_thread_id' => $ticketMessage->ticket_thread_id,
+                'mime_type' => $fileType
             ]);
 
         return Redirect::back();

@@ -12,7 +12,8 @@ class TicketMessageAttachment extends Model
     protected $fillable = [
         'location',
         'name',
-        'ticket_thread_id'
+        'ticket_thread_id',
+        'mime_type'
     ];
 
     /**

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\TicketThread;
 use App\Models\TicketMessage;
 use App\Models\TicketMessageAttachment;
@@ -12,27 +13,17 @@ use App\Models\TicketStatus;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
-class TicketMessageController extends Controller
+
+class TicketMessageAttachmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, TicketMessage $ticketMessage)
+    public function index()
     {
-        return Inertia::render('Chat/Index', [
-            'tickets' => TicketMessage::with(['ticketThread'])
-                ->withQueryString()
-                ->through(function ($ticketMessage) {
-                    return [
-                        'id' => $ticketMessage->id,
-                        'message' => $ticketMessage->message,
-                        'created_at' => $ticketMessage->created_at,
-                        'updated_at' => $ticketMessage->updated_at,
-                    ];
-                })
-        ]);
+        //
     }
 
     /**
@@ -65,15 +56,6 @@ class TicketMessageController extends Controller
     public function show($id)
     {
         //
-    }
-
-    /**
-     * @param TicketMessageAttachment $attachment
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
-     */
-    public function download(TicketMessageAttachment $attachment)
-    {
-        return Storage::download($attachment->location);
     }
 
     /**
