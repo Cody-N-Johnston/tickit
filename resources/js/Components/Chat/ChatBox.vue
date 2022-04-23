@@ -23,20 +23,24 @@ const submit = () => {
     ...data,
     thread_id: props.thread.id,
   }))
-  console.log(form.attachment)
   form.post(route('chat.store'), {
     onFinish: () => form.message = '',
     preserveScroll: true
   });
 };
 
-function chooseFile() {
+function browseFiles() {
   fileInput.value.click()
 }
 
 function fileChosen(event) {
-  console.log(event.target.files[0])
-  form.attachment = event.target.files[0]
+  const files = event.target.files
+  form.attachment = files[0]
+  console.log(form.attachment)
+}
+
+function removeFile() {
+  form.attachment = null
 }
 
 </script>
@@ -46,10 +50,10 @@ function fileChosen(event) {
     <form @submit.prevent="submit">
         <div class="relative flex">
            <span class="absolute inset-y-0 flex items-center">
-              <button name="attachment" type="button" @click="chooseFile" class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300">
+              <button name="attachment" type="button" @click="browseFiles" class="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300">
                 <PaperClipIcon class="h-6 w-6 ml-2"/>
               </button>
-             <input id="file-upload" ref="fileInput" @click="fileChosen" name="file-upload" type="file" hidden/>
+             <input id="file-upload" ref="fileInput" @change="fileChosen" name="file-upload" type="file" hidden/>
            </span>
           <input id="message" name="message" type="text" v-model="form.message" placeholder="Write your message!" class="w-full focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3 border-transparent focus:border-transparent focus:ring-0">
           <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
