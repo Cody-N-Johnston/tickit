@@ -13,6 +13,9 @@ const props = defineProps({
              :sender="message.user_name"
              :created-at="message.created_at"
              :message="message.message"
+             :attachment-id="message.attachment_id"
+             :attachment-location="message.attachment_location"
+             :attachment-name="message.attachment_name"
     />
   </div>
 </template>

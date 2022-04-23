@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('ticket_threads', function (Blueprint $table) {
-            $table->dropColumn('status');
-            $table->foreignId('ticket_status_id')
+        Schema::table('ticket_message_attachments', function (Blueprint $table) {
+            $table->foreignId('ticket_message_id')
                 ->nullable()
-                ->constrained('ticket_statuses')
+                ->constrained('ticket_messages')
                 ->nullOnDelete();
         });
     }
@@ -29,8 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('ticket_threads', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('ticket_status_id');
+        Schema::table('ticket_message_attachments', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('ticket_message_id');
         });
     }
 };

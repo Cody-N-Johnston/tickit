@@ -16,6 +16,7 @@ const form = useForm({
 const props = defineProps({
   open: Boolean,
   thread: Object,
+  errors: Object
 })
 
 const submit = () => {
@@ -24,7 +25,10 @@ const submit = () => {
     thread_id: props.thread.id,
   }))
   form.post(route('chat.store'), {
-    onFinish: () => form.message = '',
+    onFinish: () => {
+      form.message = ''
+      form.attachment = null
+    },
     preserveScroll: true
   });
 };
@@ -40,6 +44,7 @@ function fileChosen(event) {
 
 function removeFile() {
   form.attachment = null
+  form.errors.attachment = null
 }
 
 </script>
@@ -55,6 +60,9 @@ function removeFile() {
           </button>
         </div>
         <p class="text-gray-700 text-xs">{{ form.attachment.name }}</p>
+        <div v-if="form.errors.attachment && form.errors.attachment != null">
+          <p class="text-red-500 text-sm">{{form.errors.attachment}}</p>
+        </div>
       </div>
         <div class="relative flex">
            <span class="absolute inset-y-0 flex items-center">

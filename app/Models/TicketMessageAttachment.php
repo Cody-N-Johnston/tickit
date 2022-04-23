@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class TicketMessageAttachment extends Model
 {
     use HasFactory;
+    public $timestamps = true;
+    protected $fillable = [
+        'location',
+        'name',
+        'ticket_thread_id'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

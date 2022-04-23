@@ -34,15 +34,19 @@ class ChatController extends Controller
                 'assigned_to' => $ticketThread->assignedTo->name,
             ],
             'messages' => $ticketThread->messages()
-                ->with('user')
+                ->with(['user'])
                 ->get()
                 ->map(function ($message) use ($ticketThread) {
+                    $attachment = $message->attachments->first();
                     return [
                         'id' => $message->id,
                         'message' => $message->message,
                         'user_id' => $message->user->id,
                         'user_name' => $message->user->name,
                         'created_at' => $message->created_at,
+                        'attachment_name' => $attachment !== null ? $attachment->name : '',
+                        'attachment_location' => $attachment !== null ? $attachment->location : '',
+                        'attachment_id' => $attachment !== null ? $attachment->id : '',
                     ];
                 })
                 ->all()
@@ -68,8 +72,12 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'message' => ['required']
+            'message' => ['required'],
+            'attachment' => 'mimes:jpg,png,gif,mp4,avi,mpeg,zip,txt'
         ]);
+
+        $filePath = $request->file('attachment')->store('message_attachments');
+        $fileName = $request->file('attachment')->getClientOriginalName();
 
         $ticketMessage = new TicketMessage();
         $ticketMessage->message = $request->input('message');
@@ -77,6 +85,12 @@ class ChatController extends Controller
         $ticketMessage->ticket_thread_id = $request->input('thread_id');
 
         $ticketMessage->save();
+        $ticketMessage->attachments()->create([
+                'location' => $filePath,
+                'name' => $fileName,
+                'ticket_thread_id' => $ticketMessage->ticket_thread_id
+            ]);
+
         return Redirect::back();
     }
 

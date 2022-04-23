@@ -21347,7 +21347,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     open: Boolean,
-    thread: Object
+    thread: Object,
+    errors: Object
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -21369,7 +21370,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       form.post(route('chat.store'), {
         onFinish: function onFinish() {
-          return form.message = '';
+          form.message = '';
+          form.attachment = null;
         },
         preserveScroll: true
       });
@@ -21386,6 +21388,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     function removeFile() {
       form.attachment = null;
+      form.errors.attachment = null;
     }
 
     var __returned__ = {
@@ -21427,13 +21430,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/CloudDownloadIcon.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/ChevronDownIcon.js");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     id: Number,
     sender: String,
     message: String,
-    createdAt: String
+    createdAt: String,
+    attachmentId: Number,
+    attachmentName: String,
+    attachmentLocation: String
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -21446,11 +21458,17 @@ __webpack_require__.r(__webpack_exports__);
       return date.toLocaleDateString() + " " + date.toLocaleTimeString();
     }
 
+    function downloadFile() {}
+
     var __returned__ = {
       props: props,
       isHovered: isHovered,
       formatCreatedAt: formatCreatedAt,
-      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref
+      downloadFile: downloadFile,
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      CloudDownloadIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__["default"],
+      ChevronDownIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_3__["default"],
+      Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -23340,15 +23358,21 @@ var _hoisted_5 = {
   "class": "text-gray-700 text-xs"
 };
 var _hoisted_6 = {
-  "class": "relative flex"
+  key: 0
 };
 var _hoisted_7 = {
-  "class": "absolute inset-y-0 flex items-center"
+  "class": "text-red-500 text-sm"
 };
 var _hoisted_8 = {
-  "class": "absolute right-0 items-center inset-y-0 hidden sm:flex"
+  "class": "relative flex"
 };
 var _hoisted_9 = {
+  "class": "absolute inset-y-0 flex items-center"
+};
+var _hoisted_10 = {
+  "class": "absolute right-0 items-center inset-y-0 hidden sm:flex"
+};
+var _hoisted_11 = {
   type: "submit",
   "class": "inline-flex items-center justify-center rounded-sm px-4 py-3 transition duration-500 ease-in-out text-white bg-indigo-600 hover:bg-indigo-700"
 };
@@ -23368,7 +23392,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.attachment.name), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), $setup.form.errors.attachment && $setup.form.errors.attachment != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.attachment), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     name: "attachment",
     type: "button",
     onClick: $setup.browseFiles,
@@ -23395,7 +23421,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "w-full focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3 border-transparent focus:border-transparent focus:ring-0"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.message]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PaperAirplaneIcon"], {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.message]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PaperAirplaneIcon"], {
     "class": "h-6 w-6 ml-2 transform rotate-90"
   })])])])], 40
   /* PROPS, HYDRATE_EVENTS */
@@ -23429,6 +23455,15 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "text-gray-700 text-xs ml-1"
 };
+var _hoisted_5 = {
+  key: 0
+};
+var _hoisted_6 = {
+  "class": "flex flex-row justify-end"
+};
+var _hoisted_7 = {
+  "class": "items-center justify-center text-gray-700 text-xs ml-1"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["px-4 relative", {
@@ -23444,7 +23479,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatCreatedAt($props.createdAt)), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message), 1
+  )]), $props.attachmentId ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+    method: "get",
+    as: "button",
+    type: "button",
+    "class": "inline-flex items-center justify-center rounded-full h-6 w-6 transition duration-150 ease-in-out text-gray-500 hover:bg-gray-300"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CloudDownloadIcon"], {
+        "class": "inline-flex rounded-full h-4 w-4 transition duration-500 ease-in-out text-gray-700"
+      })];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.attachmentName), 1
+  /* TEXT */
+  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message), 1
   /* TEXT */
   )])])], 34
   /* CLASS, HYDRATE_EVENTS */
@@ -23475,10 +23526,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       id: message.id,
       sender: message.user_name,
       "created-at": message.created_at,
-      message: message.message
+      message: message.message,
+      "attachment-id": message.attachment_id,
+      "attachment-location": message.attachment_location,
+      "attachment-name": message.attachment_name
     }, null, 8
     /* PROPS */
-    , ["id", "sender", "created-at", "message"]);
+    , ["id", "sender", "created-at", "message", "attachment-id", "attachment-location", "attachment-name"]);
   }), 256
   /* UNKEYED_FRAGMENT */
   ))]);
@@ -53286,6 +53340,39 @@ function render(_ctx, _cache) {
 
 /***/ }),
 
+/***/ "./node_modules/@heroicons/vue/outline/esm/CloudDownloadIcon.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@heroicons/vue/outline/esm/CloudDownloadIcon.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function render(_ctx, _cache) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    "stroke-width": "2",
+    stroke: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      d: "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"
+    })
+  ]))
+}
+
+/***/ }),
+
 /***/ "./node_modules/@heroicons/vue/outline/esm/FolderIcon.js":
 /*!***************************************************************!*\
   !*** ./node_modules/@heroicons/vue/outline/esm/FolderIcon.js ***!
@@ -53605,6 +53692,37 @@ function render(_ctx, _cache) {
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
       "fill-rule": "evenodd",
       d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+      "clip-rule": "evenodd"
+    })
+  ]))
+}
+
+/***/ }),
+
+/***/ "./node_modules/@heroicons/vue/solid/esm/ChevronDownIcon.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@heroicons/vue/solid/esm/ChevronDownIcon.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function render(_ctx, _cache) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 20 20",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+      "fill-rule": "evenodd",
+      d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
       "clip-rule": "evenodd"
     })
   ]))
