@@ -53,6 +53,10 @@ Route::get('/users/edit/{user_id}', [UsersController::class, 'edit'])
     ->middleware(['auth', 'verified'])
     ->name('users.edit');
 
+Route::post('/users', [UsersController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('users.store');
+
 Route::get('/chat/{ticketThread}', [ChatController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('chat');
