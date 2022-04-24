@@ -1,20 +1,32 @@
 <script setup>
 import UserRow from '@/Components/User/Row.vue'
-import SimplePagination from "@/Components/SimplePagination.vue";
+import CreateUserModal from '@/Components/User/CreateUserModal.vue'
+import SimplePagination from "@/Components/SimplePagination.vue"
+import FlashMessage from '@/Components/FlashMessage.vue'
+import { PlusSmIcon as PlusSmIconOutline } from '@heroicons/vue/outline'
+import { ref } from 'vue'
 
+const openUserCreationModal = ref(false)
 defineProps({
   users: Object
 })
+const createUserClass = "inline-flex items-center p-3 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 </script>
 <template>
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
+        <FlashMessage />
       </div>
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Create User</button>
+        <button id="open-ticket-modal" @click="openUserCreationModal = true" type="button" :class="createUserClass">
+          <PlusSmIconOutline class="h-6 w-6" aria-hidden="true" />
+        </button>
       </div>
     </div>
+    <Teleport to="body">
+      <CreateUserModal :open="openUserCreationModal" @close="openUserCreationModal = false" />
+    </Teleport>
     <div class="mt-8 flex flex-col">
       <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
