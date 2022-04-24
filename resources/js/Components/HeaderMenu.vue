@@ -5,7 +5,7 @@ import Notification from "@/Components/Notification"
 </script>
 
 <template>
-  <div class="flex-1 px-4 flex justify-between">
+  <div class="sticky flex-1 px-4 flex justify-between">
     <div class="flex-1 flex">
       <Search />
     </div>
