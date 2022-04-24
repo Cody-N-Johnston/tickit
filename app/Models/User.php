@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(TicketThread::class, 'assigned_to_user_id');
     }
+
+    public function messages()
+    {
+        return $this->hasMany(TicketMessage::class);
+    }
 }

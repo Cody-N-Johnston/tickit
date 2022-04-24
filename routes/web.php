@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TicketMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +38,11 @@ Route::get('/tickets', [TicketsController::class, 'index'])
     ->name('tickets');
 
 Route::post('/tickets', [TicketsController::class, 'store'])
+    ->middleware(['auth'])
     ->name('tickets.store');
 
 Route::put('/tickets/{ticket}', [TicketsController::class, 'update'])
+    ->middleware(['auth'])
     ->name('tickets.update');
 
 Route::get('/users', [UsersController::class, 'index'])
@@ -47,6 +52,18 @@ Route::get('/users', [UsersController::class, 'index'])
 Route::get('/users/edit/{user_id}', [UsersController::class, 'edit'])
     ->middleware(['auth', 'verified'])
     ->name('users.edit');
+
+Route::get('/chat/{ticketThread}', [ChatController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('chat');
+
+Route::post('/chat', [ChatController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('chat.store');
+
+Route::get('/messages/{attachment}', [TicketMessageController::class, 'download'])
+    ->middleware(['auth'])
+    ->name('messages.download');
 
 Route::get('/profile', function () {
     return Inertia::render('Profile');

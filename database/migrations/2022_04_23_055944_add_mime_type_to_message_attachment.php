@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('ticket_threads', function (Blueprint $table) {
-            $table->dropColumn('status');
-            $table->foreignId('ticket_status_id')
-                ->nullable()
-                ->constrained('ticket_statuses')
-                ->nullOnDelete();
+        Schema::table('ticket_message_attachments', function (Blueprint $table) {
+            $table->text('mime_type')->nullable();
         });
     }
 
@@ -29,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('ticket_threads', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('ticket_status_id');
+        Schema::table('ticket_message_attachments', function (Blueprint $table) {
+            $table->dropColumn('mime_type');
         });
     }
 };
