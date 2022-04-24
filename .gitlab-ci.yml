@@ -8,7 +8,7 @@ services:
 variables:
   # Configure mysql environment variables (https://hub.docker.com/r/_/mysql/)
   MYSQL_DATABASE: tickit
-  MYSQL_ROOT_PASSWORD: mysql_strong_password
+  MYSQL_ROOT_PASSWORD: secret
 
 # Select what we should cache between builds
 cache:
